@@ -1,5 +1,8 @@
 ## License
 
+![Slide-Project](https://github.com/user-attachments/assets/fa6244c1-4d06-4da4-a17b-3e2e0f56c352)
+
+
 This project is licensed for educational use only. For commercial use, a license must be purchased. You can obtain the license here: [Code License](https://webprodigies.com/license).
 
 
