@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 
-const config = {
+const config: Config = {
   darkMode: ['class'],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -19,16 +19,6 @@ const config = {
     },
     extend: {
       colors: {
-        'in-active': '#545454',
-        connector: '#F0F1F6',
-        'keyword-yellow': '#E1CE26',
-        'keyword-purple': '#7C21D6',
-        'keyword-red': '#EB441F',
-        'keyword-green': '#2FE699',
-        'light-blue': '#3352CC',
-        'background-90': '#1D1D1D',
-        'background-80': '#252525',
-        'text-secondary': '#9B9CA0',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
@@ -79,6 +69,16 @@ const config = {
           border: 'hsl(var(--sidebar-border))',
           ring: 'hsl(var(--sidebar-ring))',
         },
+        'in-active': '#545454',
+        connector: '#F0F1F6',
+        'keyword-yellow': '#E1CE26',
+        'keyword-purple': '#7C21D6',
+        'keyword-red': '#EB441F',
+        'keyword-green': '#2FE699',
+        'light-blue': '#3352CC',
+        'background-90': '#1D1D1D',
+        'background-80': '#252525',
+        'text-secondary': '#9B9CA0',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -86,30 +86,78 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
-        'accordion-down': {
-          from: {
-            height: '0',
-          },
+        scroll: {
           to: {
-            height: 'var(--radix-accordion-content-height)',
+            transform: 'translate(calc(-50% - 0.5rem))',
           },
         },
+        spotlight: {
+          '0%': {
+            opacity: '0',
+            transform: 'translate(-72%, -62%) scale(0.5)',
+          },
+          '100%': {
+            opacity: '1',
+            transform: 'translate(-50%,-40%) scale(1)',
+          },
+        },
+        moveHorizontal: {
+          '0%': {
+            transform: 'translateX(-50%) translateY(-10%)',
+          },
+          '50%': {
+            transform: 'translateX(50%) translateY(10%)',
+          },
+          '100%': {
+            transform: 'translateX(-50%) translateY(-10%)',
+          },
+        },
+        moveInCircle: {
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '50%': {
+            transform: 'rotate(180deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
+        moveVertical: {
+          '0%': {
+            transform: 'translateY(-50%)',
+          },
+          '50%': {
+            transform: 'translateY(50%)',
+          },
+          '100%': {
+            transform: 'translateY(-50%)',
+          },
+        },
+        'accordion-down': {
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
+        },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
+        scroll:
+          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
+        spotlight: 'spotlight 2s ease .75s 1 forwards',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        first: 'moveVertical 30s ease infinite',
+        second: 'moveInCircle 20s reverse infinite',
+        third: 'moveInCircle 40s linear infinite',
+        fourth: 'moveHorizontal 40s ease infinite',
+        fifth: 'moveInCircle 20s ease infinite',
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
-} satisfies Config
+}
 
 export default config

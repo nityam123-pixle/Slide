@@ -1,7 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react';
 
-const TAIL_LENGTH = 20;
+const TAIL_LENGTH = 10;
 
 interface CursorPosition {
   x: number;
@@ -65,7 +65,7 @@ const FluidMotionCursor: React.FC = () => {
       {[...Array(TAIL_LENGTH)].map((_, index) => (
         <div
           key={index}
-          className="absolute w-4 h-4 bg-blue-500 rounded-full opacity-70"
+          className="absolute w-4 h-4 bg-gradient-to-br from-[#3352CC] to-[#1C2D70] rounded-full opacity-70"
           style={{ transformOrigin: 'center' }}
         />
       ))}
