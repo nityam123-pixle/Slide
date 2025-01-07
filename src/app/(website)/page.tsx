@@ -44,91 +44,154 @@ const Home = (props: Props) => {
   ];
 
   return (
-    <main className="flex items-center justify-center flex-col">
+    <main className="flex items-center justify-center flex-col overflow-x-hidden">
       <Navbar />
-      <section className="h-screen w-full  bg-neutral-950 rounded-md  !overflow-visible relative flex flex-col items-center  antialiased">
+      <section className="min-h-screen w-full bg-neutral-950 rounded-md relative flex flex-col items-center antialiased">
         <div className="absolute inset-0 h-full w-full items-center px-5 py-24 [background:radial-gradient(125%_125%_at_50%_10%,#000_35%,#223_100%)]"></div>
-        <div className="flex flex-col mt-[-100px] md:mt-[-50px]">
+        <div className="flex flex-col mt-8 md:mt-[-50px] space-y-8">
+          {/* Added `mt-8` */}
           <ContainerScroll
             titleComponent={
-              <div className="flex items-center flex-col">
+              <div className="flex items-center flex-col text-center">
                 <Button
-                  size={"lg"}
-                  className="p-8 mb-8 md:mb-0 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] group transition-all flex items-center justify-center gap-4 duration-500"
+                  size="lg"
+                  className="p-8 mb-8 text-2xl w-full sm:w-fit border-t-2 rounded-full border-[#4D4D4D] bg-[#1F1F1F] group flex items-center justify-center gap-4 transition-all duration-500"
                 >
-                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7a7a7a] to-[#3352CC] font-sans hover:transition-all md:text-center group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3352CC] group-hover:to-[#1C2D70] group-hover:transition-all transition-all">
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#7a7a7a] to-[#3352CC] font-sans group-hover:text-white group-hover:bg-gradient-to-r group-hover:from-[#3352CC] group-hover:to-[#1C2D70] transition-all">
                     Start For Free Today
                   </span>
                 </Button>
-                <h1 className="text-5xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-br from-[#7a7a7a] to-[#3352CC] font-sans font-bold">
-                Transform Your Instagram Engagement with Slide
+                <h1 className="text-5xl md:text-7xl bg-clip-text text-transparent bg-gradient-to-br from-[#7a7a7a] to-[#3352CC] font-bold">
+                  Transform Your Instagram Engagement with Slide
                 </h1>
               </div>
             }
           />
         </div>
       </section>
+
+      {/* Infinite Moving Cards Section */}
       <InfiniteMovingCards
-        className="md:mt-[18rem] mt-[-100px]"
+        className="md:mt-48 mt-20"
         items={clients}
         direction="right"
         speed="slow"
       />
-      <section id="#features">
-        <HeroParallax products={products}></HeroParallax>
+
+      {/* Hero Parallax Section */}
+      <section id="features" className="relative">
+        <HeroParallax products={products} />
       </section>
-      <section id="#pricing" className="-mt-6">
+
+      {/* Pricing Section */}
+      <section className="relative">
         <LampComponent />
         <div className="flex flex-wrap items-center justify-center flex-col md:flex-row gap-8 -mt-72">
-          {plans.map((plan, index) => (
-            <CardContainer key={index} className="inter-var">
-              <CardBody
-                className={`bg-gray-50 relative group/card dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black ${
-                  plan.name === "Smart AI Plan"
-                    ? "dark:border-[#E2CBFF]" // Highlight Smart AI Plan
-                    : "dark:border-white/[0.2]"
-                } border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border`}
+          {/* Free Plan */}
+          <CardContainer className="inter-var">
+            <CardBody className="bg-gray-50 relative mt-36  group/card dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border">
+              <CardItem
+                translateZ="50"
+                className="text-xl font-bold text-neutral-600 dark:text-white"
               >
+                Free Plan
+                <h2 className="text-6xl">$0</h2>
+              </CardItem>
+              <CardItem
+                translateZ="60"
+                className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
+                Perfect for getting started
+                <ul className="my-4 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Boost engagement with target responses
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Automate comment replies to enhance audience interaction
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Turn followers into customers with targeted messaging
+                  </li>
+                </ul>
+              </CardItem>
+              <div className="flex justify-between items-center mt-8">
                 <CardItem
-                  translateZ="50"
-                  className="text-xl font-bold text-neutral-600 dark:text-white"
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
                 >
-                  {plan.name}
-                  <h2 className="text-6xl">{plan.price}</h2>
+                  Try now →
                 </CardItem>
                 <CardItem
-                  translateZ="60"
-                  className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
                 >
-                  {plan.description}
-                  <ul className="my-4 flex flex-col gap-2">
-                    {plan.features.map((feature, i) => (
-                      <li key={i} className="flex items-center gap-2">
-                        <CheckIcon />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+                  Get Started
                 </CardItem>
-                <div className="flex justify-between items-center mt-8">
-                  <CardItem
-                    translateZ={20}
-                    as="button"
-                    className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-                  >
-                    Try now →
-                  </CardItem>
-                  <CardItem
-                    translateZ={20}
-                    as="button"
-                    className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-                  >
-                    {plan.cta}
-                  </CardItem>
-                </div>
-              </CardBody>
-            </CardContainer>
-          ))}
+              </div>
+            </CardBody>
+          </CardContainer>
+
+          {/* Smart AI Plan */}
+          <CardContainer className="inter-var">
+            <CardBody className="bg-gray-50 mt-36 relative group/card dark:hover:shadow-2xl dark:hover:shadow-neutral-500/[0.1] dark:bg-black dark:border-[#E2CBFF] border-black/[0.1] w-full md:!w-[350px] h-auto rounded-xl p-6 border">
+              <CardItem
+                translateZ="50"
+                className="text-xl font-bold text-neutral-600 dark:text-white"
+              >
+                Smart AI Plan
+                <h2 className="text-6xl">$99</h2>
+              </CardItem>
+              <CardItem
+                translateZ="60"
+                className="text-neutral-500 text-sm max-w-sm mt-2 dark:text-neutral-300"
+              >
+                Advanced features for power users
+                <ul className="my-4 flex flex-col gap-2">
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    All features from Free Plan
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    AI-powered response generation
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Advanced analytics and insights
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Priority customer support
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckIcon />
+                    Custom branding options
+                  </li>
+                </ul>
+              </CardItem>
+              <div className="flex justify-between items-center mt-8">
+                <CardItem
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+                >
+                  Try now →
+                </CardItem>
+                <CardItem
+                  translateZ={20}
+                  as="button"
+                  className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+                >
+                  Upgrade Now
+                </CardItem>
+              </div>
+            </CardBody>
+          </CardContainer>
         </div>
       </section>
     </main>

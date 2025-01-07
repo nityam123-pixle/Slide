@@ -26,7 +26,7 @@ export const ContainerScroll = ({
   }, [])
 
   const scaleDimensions = () => {
-    return isMobile ? [0.7, 0.9] : [1.05, 1]
+    return isMobile ? [0.8, 1] : [1.05, 1]
   }
 
   const rotate = useTransform(scrollYProgress, [0, 1], [20, 0])
@@ -35,13 +35,13 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="h-[80rem] flex items-center justify-center relative p-20"
+      className="h-[50rem] sm:h-[80rem] flex items-center justify-center relative p-8 sm:p-20"
       ref={containerRef}
     >
       <div
-        className="py-40 w-full relative"
+        className="py-20 sm:py-40 w-full relative"
         style={{
-          perspective: '1000px',
+          perspective: '800px',
         }}
       >
         <Header
@@ -64,7 +64,7 @@ export const Header = ({ translate, titleComponent }: any) => {
       style={{
         translateY: translate,
       }}
-      className="div max-w-5xl mx-auto text-center"
+      className="max-w-2xl sm:max-w-5xl mx-auto text-center px-4 sm:px-0"
     >
       {titleComponent}
     </motion.div>
@@ -88,14 +88,14 @@ export const Card = ({
         boxShadow:
           '0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003',
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full  p-6 bg-[#222222] rounded-[30px] shadow-2xl"
+      className="max-w-xl sm:max-w-5xl mx-auto h-[20rem] sm:h-[30rem] md:h-[40rem] w-full p-4 sm:p-6 bg-[#222222] rounded-[20px] sm:rounded-[30px] shadow-2xl"
     >
-      <div className="h-full w-full rounded-2xl  gap-4 overflow-hidden p-4 transition-all ">
+      <div className="h-full w-full rounded-2xl gap-4 overflow-hidden p-2 sm:p-4 transition-all">
         <Image
           src="/Slide-Project.jpg"
           fill
           alt="bannerImage"
-          className="object-contain border-8 rounded-2xl"
+          className="object-contain border-4 sm:border-8 rounded-2xl"
         />
       </div>
     </motion.div>
