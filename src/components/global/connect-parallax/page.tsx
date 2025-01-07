@@ -5,6 +5,7 @@ import {
   useScroll,
   useTransform,
   useSpring,
+  useMotionValue,
   MotionValue,
 } from "framer-motion";
 import Image from "next/image";
@@ -22,6 +23,7 @@ export const HeroParallax = ({
   const firstRow = products.slice(0, 5);
   const secondRow = products.slice(5, 10);
   const thirdRow = products.slice(10, 15);
+
   const ref = React.useRef(null);
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -69,6 +71,9 @@ export const HeroParallax = ({
     springConfig
   );
 
+  // Create a MotionValue for mobile compatibility
+  const zeroMotionValue = useMotionValue(0);
+
   return (
     <div
       ref={ref}
@@ -77,36 +82,41 @@ export const HeroParallax = ({
       <Header />
       <motion.div
         style={{
-          rotateX: isMobile ? 0 : rotateX,
-          rotateZ: isMobile ? 0 : rotateZ,
-          translateY: isMobile ? 0 : translateY,
+          rotateX: isMobile ? zeroMotionValue : rotateX,
+          rotateZ: isMobile ? zeroMotionValue : rotateZ,
+          translateY: isMobile ? zeroMotionValue : translateY,
           opacity: isMobile ? 1 : opacity,
         }}
         className="space-y-12 md:space-y-20"
       >
+        {/* First Row */}
         <motion.div className="grid grid-cols-1 md:flex md:flex-row-reverse md:space-x-reverse md:space-x-20 mb-12 md:mb-20">
           {firstRow.map((product) => (
             <ProductCard
               product={product}
-              translate={isMobile ? 0 : translateX}
+              translate={isMobile ? zeroMotionValue : translateX}
               key={product.title}
             />
           ))}
         </motion.div>
+
+        {/* Second Row */}
         <motion.div className="grid grid-cols-1 md:flex md:space-x-20 mb-12 md:mb-20">
           {secondRow.map((product) => (
             <ProductCard
               product={product}
-              translate={isMobile ? 0 : translateXReverse}
+              translate={isMobile ? zeroMotionValue : translateXReverse}
               key={product.title}
             />
           ))}
         </motion.div>
+
+        {/* Third Row */}
         <motion.div className="grid grid-cols-1 md:flex md:flex-row-reverse md:space-x-reverse md:space-x-20">
           {thirdRow.map((product) => (
             <ProductCard
               product={product}
-              translate={isMobile ? 0 : translateX}
+              translate={isMobile ? zeroMotionValue : translateX}
               key={product.title}
             />
           ))}
