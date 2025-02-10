@@ -78,7 +78,7 @@ export async function POST(req: NextRequest) {
               messages: [
                 {
                   role: 'assistant',
-                  content: `${automation.listener?.prompt}: Keep responses under 2 sentences`,
+                  content: `${automation.listener?.prompt}:Respond to Instagram comments and DMs politely and respectfully. Provide personalized replies based on the user's keywords, maintaining a professional, engaging tone aligned with the brand's voice. Avoid abusive, negative, or overly casual responses.`,
                 },
               ],
             })
@@ -188,7 +188,7 @@ export async function POST(req: NextRequest) {
                 messages: [
                   {
                     role: 'assistant',
-                    content: `${automation.listener?.prompt}: keep responses under 2 sentences`,
+                    content: `${automation.listener?.prompt}: keep responses short and concise. Response should not be abusively processed.`,
                   },
                 ],
               })

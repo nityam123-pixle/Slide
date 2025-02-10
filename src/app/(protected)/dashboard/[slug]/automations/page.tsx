@@ -81,7 +81,7 @@ const Page = (props: Props) => {
           <CreateAutomation />
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

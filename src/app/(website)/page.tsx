@@ -12,6 +12,7 @@ import { Button } from "@/components/ui/button";
 import { clients, products } from "@/lib/constants";
 import { CheckIcon } from "lucide-react";
 import React from "react";
+import Footer from "./Footer";
 
 type Props = {};
 
@@ -84,7 +85,7 @@ const Home = (props: Props) => {
       </section>
 
       {/* Pricing Section */}
-      <section className="relative">
+      <section className="relative" id="pricing">
         <LampComponent />
         <div className="flex flex-wrap items-center justify-center flex-col md:flex-row gap-8 -mt-72">
           {/* Free Plan */}
@@ -194,6 +195,11 @@ const Home = (props: Props) => {
           </CardContainer>
         </div>
       </section>
+      <div className="container mt-96">
+        <div>
+          <Footer />
+        </div>
+      </div>
     </main>
   );
 };

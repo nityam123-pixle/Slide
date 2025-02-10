@@ -27,7 +27,7 @@ export default function RootLayout({
         baseTheme: [neobrutalism],
       }}
     >
-      <html lang="en">
+      <html lang="en" suppressHydrationWarning>
         <body
           suppressHydrationWarning
           className={jakarta.className}
